@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Happy Birthday Sravani Dillu 🎂</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: linear-gradient(135deg, #ffe4ec, #eadcff);
+    }
+
+    /* Main container */
+    .container {
+      width: 90%;
+      max-width: 520px;
+      text-align: center;
+    }
+
+    /* Intro text */
+    .intro {
+      margin-bottom: 35px;
+      transition: 0.5s ease;
+    }
+
+    .intro h1 {
+      color: #d94f7d;
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    .intro p {
+      color: #777;
+      font-size: 17px;
+    }
+
+    /* Gift */
+    .gift-container {
+      position: relative;
+      width: 180px;
+      height: 170px;
+      margin: 0 auto;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .gift-container:hover {
+      transform: scale(1.05);
+    }
+
+    .gift {
+      position: absolute;
+      bottom: 0;
+      left: 20px;
+      width: 140px;
+      height: 110px;
+      background: #e85d8b;
+      border-radius: 5px;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.18);
+    }
+
+    /* Vertical ribbon */
+    .gift::before {
+      content: "";
+      position: absolute;
+      left: 55px;
+      width: 30px;
+      height: 110px;
+      background: #ffd166;
+    }
+
+    /* Horizontal ribbon */
+    .gift::after {
+      content: "";
+      position: absolute;
+      top: 35px;
+      left: 0;
+      width: 140px;
+      height: 30px;
+      background: #ffd166;
+    }
+
+    /* Gift lid */
+    .lid {
+      position: absolute;
+      z-index: 2;
+      top: 30px;
+      left: 10px;
+      width: 160px;
+      height: 35px;
+      background: #d94f7d;
+      border-radius: 6px;
+      transition: transform 0.8s ease;
+      transform-origin: left bottom;
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Lid ribbon */
+    .lid::after {
+      content: "";
+      position: absolute;
+      left: 65px;
+      top: 0;
+      width: 30px;
+      height: 35px;
+      background: #ffd166;
+    }
+
+    /* Bow */
+    .bow {
+      position: absolute;
+      z-index: 3;
+      top: 5px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 55px;
+      transition: 0.8s ease;
+    }
+
+    /* Click instruction */
+    .click-text {
+      margin-top: 25px;
+      color: #888;
+      font-size: 15px;
+      animation: pulse 1.5s infinite;
+    }
+
+    /* Birthday message */
+    .message {
+      display: none;
+      opacity: 0;
+      transform: translateY(30px) scale(0.9);
+      background: rgba(255, 255, 255, 0.95);
+      padding: 40px 30px;
+      border-radius: 25px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+    }
+
+    .message.show {
+      display: block;
+      animation: messageIn 1s forwards;
+    }
+
+    .cake {
+      font-size: 70px;
+      margin-bottom: 10px;
+      animation: bounce 2s infinite;
+    }
+
+    .message h1 {
+      font-size: 42px;
+      color: #d94f7d;
+      margin-bottom: 5px;
+    }
+
+    .message h2 {
+      font-size: 30px;
+      color: #8e44ad;
+      margin-bottom: 20px;
+    }
+
+    .message p {
+      color: #555;
+      font-size: 17px;
+      line-height: 1.7;
+    }
+
+    .heart {
+      font-size: 35px;
+      margin-top: 20px;
+      animation: heartbeat 1.2s infinite;
+    }
+
+    .signature {
+      margin-top: 20px;
+      color: #999;
+      font-size: 14px;
+    }
+
+    /* Confetti */
+    .confetti {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      top: -20px;
+      z-index: 100;
+      pointer-events: none;
+      animation: fall linear forwards;
+    }
+
+    /* Background floating hearts */
+    .floating-heart {
+      position: fixed;
+      bottom: -50px;
+      font-size: 25px;
+      opacity: 0.6;
+      animation: floatUp linear infinite;
+      pointer-events: none;
+    }
+
+    /* Animations */
+
+    @keyframes pulse {
+      0%, 100% {
+        opacity: 0.5;
+      }
+
+      50% {
+        opacity: 1;
+      }
+    }
+
+    @keyframes messageIn {
+      from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.9);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes bounce {
+      0%, 100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-12px);
+      }
+    }
+
+    @keyframes heartbeat {
+      0%, 100% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.25);
+      }
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+      }
+
+      100% {
+        transform: translateY(110vh) rotate(720deg);
+        opacity: 0;
+      }
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+      }
+
+      20% {
+        opacity: 0.6;
+      }
+
+      100% {
+        transform: translateY(-110vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    /* Mobile */
+    @media (max-width: 500px) {
+      .intro h1 {
+        font-size: 26px;
+      }
+
+      .message {
+        padding: 35px 20px;
+      }
+
+      .message h1 {
+        font-size: 34px;
+      }
+
+      .message h2 {
+        font-size: 26px;
+      }
+
+      .message p {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <!-- INTRO -->
+    <div class="intro" id="intro">
+      <h1>A Little Surprise For You 💝</h1>
+      <p>There is something waiting for you...</p>
+    </div>
+
+    <!-- GIFT -->
+    <div class="gift-container" id="giftContainer" onclick="openGift()">
+
+      <div class="bow" id="bow">🎀</div>
+
+      <div class="lid" id="lid"></div>
+
+      <div class="gift"></div>
+
+    </div>
+
+    <div class="click-text" id="clickText">
+      🎁 Click the gift to open it
+    </div>
+
+
+    <!-- MESSAGE -->
+    <div class="message" id="message">
+
+      <div class="cake">🎂</div>
+
+      <h1>Happy Birthday!</h1>
+
+      <h2>Sravani 💕</h2>
+
+      <p>
+        Wishing you a very Happy Birthday! 🎉
+        <br><br>
+
+        I am really happy to have you as my friend.
+        You are such a wonderful person, and I'm truly
+        lucky to have you as my best friend. ❤️
+
+        <br><br>
+
+        May your life always be filled with
+        happiness, laughter and beautiful memories. ✨
+      </p>
+
+      <div class="heart">
+        ❤️
+      </div>
+
+      <div class="signature">
+        Happy Birthday, Bestie! 🥳
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <script>
+
+    let opened = false;
+
+    function openGift() {
+
+      if (opened) return;
+
+      opened = true;
+
+      const lid = document.getElementById("lid");
+      const bow = document.getElementById("bow");
+      const giftContainer = document.getElementById("giftContainer");
+      const intro = document.getElementById("intro");
+      const clickText = document.getElementById("clickText");
+      const message = document.getElementById("message");
+
+      /* Open lid */
+      lid.style.transform = "rotate(-25deg) translate(-20px, -80px)";
+
+      /* Move bow away */
+      bow.style.transform =
+        "translateX(-50%) translateY(-100px) rotate(-20deg)";
+
+      /* Hide intro */
+      setTimeout(() => {
+        intro.style.opacity = "0";
+        clickText.style.opacity = "0";
+        giftContainer.style.opacity = "0";
+        giftContainer.style.transform = "scale(0.5)";
+      }, 500);
+
+      /* Show message */
+      setTimeout(() => {
+        giftContainer.style.display = "none";
+        intro.style.display = "none";
+        clickText.style.display = "none";
+
+        message.classList.add("show");
+
+        /* Confetti explosion */
+        createConfetti();
+
+        /* More confetti after a short delay */
+        setTimeout(createConfetti, 700);
+        setTimeout(createConfetti, 1400);
+
+      }, 1000);
+    }
+
+
+    /* Create confetti */
+
+    function createConfetti() {
+
+      const amount = 100;
+
+      for (let i = 0; i < amount; i++) {
+
+        const confetti = document.createElement("div");
+
+        confetti.classList.add("confetti");
+
+        confetti.style.left =
+          Math.random() * 100 + "vw";
+
+        confetti.style.width =
+          Math.random() * 8 + 5 + "px";
+
+        confetti.style.height =
+          Math.random() * 8 + 5 + "px";
+
+        confetti.style.animationDuration =
+          Math.random() * 3 + 2 + "s";
+
+        confetti.style.animationDelay =
+          Math.random() * 0.5 + "s";
+
+        confetti.style.background =
+          randomColor();
+
+        document.body.appendChild(confetti);
+
+        setTimeout(() => {
+          confetti.remove();
+        }, 6000);
+      }
+    }
+
+
+    /* Random confetti colors */
+
+    function randomColor() {
+
+      const colors = [
+        "#ff5c8a",
+        "#ffd166",
+        "#06d6a0",
+        "#4cc9f0",
+        "#9b5de5",
+        "#f15bb5"
+      ];
+
+      return colors[
+        Math.floor(Math.random() * colors.length)
+      ];
+    }
+
+
+    /* Floating hearts */
+
+    function createHeart() {
+
+      const heart = document.createElement("div");
+
+      heart.classList.add("floating-heart");
+
+      heart.innerHTML = "❤️";
+
+      heart.style.left =
+        Math.random() * 100 + "vw";
+
+      heart.style.animationDuration =
+        Math.random() * 5 + 5 + "s";
+
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 10000);
+    }
+
+    /* Create hearts continuously */
+
+    setInterval(createHeart, 1800);
+
+  </script>
+
+</body>
+</html>
+```
+
